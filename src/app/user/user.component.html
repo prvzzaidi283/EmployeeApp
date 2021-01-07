@@ -1,0 +1,72 @@
+<style>
+    .alert
+  {
+    padding: 0rem !important;
+  }
+  .alert-danger
+  {
+    background-color:white !important;
+    padding: 0 rem;
+    color:red;
+    border-color:white !important;
+  }
+</style>
+<mat-sidenav-container>
+    <mat-sidenav-content>
+      <form [formGroup]="myForm" (ngSubmit)="submitForm()" novalidate>
+        
+        <!-- Name -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="First Name" formControlName="FirstName">
+          <mat-error *ngIf="errorHandling('FirstName', 'required')">
+            You must provide  <strong> First Name </strong>
+         </mat-error>
+         <mat-error *ngIf="errorHandling('FirstName', 'maxlength')">You have more than 100 characters</mat-error>
+        </mat-form-field>
+  
+        <!-- Email -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Last Name" formControlName="LastName">
+          <mat-error *ngIf="errorHandling('LastName', 'required')">
+            You must provide <strong> Last Name </strong>
+         </mat-error>
+         <mat-error *ngIf="errorHandling('LastName', 'maxlength')">You have more than 100 characters</mat-error>
+        </mat-form-field>
+       
+        <!-- Gender -->
+        
+        <mat-form-field>
+            <mat-label>City</mat-label>
+            <mat-select formControlName="CityId">
+              <mat-option  [value]="city.Id" *ngFor="let city of CityMaster">{{city.Name}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="errorHandling('CityId', 'required')">
+              You must provide <strong> City </strong>
+           </mat-error>
+          </mat-form-field>
+        <!-- Date picker -->
+        
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Phone Number" formControlName="PhoneNumber">
+            <mat-error *ngIf="errorHandling('PhoneNumber', 'required')">
+              You must provide <strong> Phone Number </strong>
+           </mat-error>
+           <mat-error *ngIf="errorHandling('PhoneNumber', 'maxlength')">You have more than 10 characters</mat-error>
+          </mat-form-field>
+        <!-- Class -->
+        
+  
+        <!-- Add Subjects -->
+       
+  
+        <!-- Submit -->
+        <div class="button-wrapper">
+          <button mat-flat-button color="primary">Submit</button>|
+          
+          <button mat-flat-button color="primary" routerLink="../employeelist"> Cancel</button>
+        </div>
+  
+      </form>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
